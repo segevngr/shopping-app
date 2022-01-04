@@ -7,12 +7,15 @@ import "./App.css"
 
 function App() {
   return(
+      <div>
+          <h1> Shopping App</h1>
       <Router>
         <Routes>
           <Route path="/" element={<Products/>}/>
           <Route path="/cart" element={<Cart/>}/>
         </Routes>
       </Router>
+      </div>
   )
 }
 

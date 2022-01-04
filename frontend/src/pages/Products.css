@@ -1,0 +1,28 @@
+#table-header{
+    width: 850px;
+    margin: auto;
+    padding: 10px;
+}
+#category-container{
+    text-align: left;
+}
+
+#cart-link{
+    text-align: right;
+}
+
+#pagination{
+    padding: 15px;
+    font-size: 20px;
+}
+
+#page-btn{
+    color: gray;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#page-btn-on{
+    padding-left: 20px;
+    padding-right: 20px;
+}

@@ -1,4 +1,5 @@
 import React from "react";
+import './CategoryPicker.css'
 
 const CategoryPicker = (props) => {
 

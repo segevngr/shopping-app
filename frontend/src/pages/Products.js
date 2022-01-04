@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import ProductTable from "../components/ProductsTable";
 import CategoryPicker from "../components/CategoryPicker";
+import './Products.css';
 
 const Products = () => {
 
@@ -19,14 +20,20 @@ const Products = () => {
         });
     }, []);
 
-
     return(
-        <div>
-            <h1>Products</h1>
-            <CategoryPicker
-                categories = {productsCategories}
-                setCategory = {setCategory}
-            />
+        <div id="products-page">
+            <h2>Products</h2>
+            <table id="table-header">
+                <thead>
+                    <td id="category-container">
+                    <CategoryPicker
+                        categories = {productsCategories}
+                        setCategory = {setCategory}
+                    />
+                    </td>
+                    <td id="cart-link"> Cart </td>
+                </thead>
+            </table>
             <ProductTable
                 data = {productsJson}
                 category = {category}

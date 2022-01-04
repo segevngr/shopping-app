@@ -1,3 +1,26 @@
 html {
     font-family: 'Open Sans', sans-serif;
+    background-color: lightgray;
+    font-size: 18px;
+    text-align: center;
+}
+
+a {
+    color: orangered;
+}
+
+a:hover {
+    color: orange;
+    cursor: pointer;
+}
+
+h1 {
+    color: orange;
+    font-size: 46px;
+}
+
+h2 {
+    color: orangered;
+    font-size: 30px;
+    text-decoration: underline;
 }
