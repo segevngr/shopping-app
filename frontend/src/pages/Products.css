@@ -26,3 +26,23 @@
     padding-left: 20px;
     padding-right: 20px;
 }
+
+#cart-icon{
+    vertical-align: bottom;
+    max-height: 25px;
+    width: auto;
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+#cart-count{
+    background-color: orangered;
+    padding: 5px;
+    font-weight: bold;
+    font-size: 18px;
+    color: white;
+    margin-right: 5px;
+    border-radius: 5px;
+
+}

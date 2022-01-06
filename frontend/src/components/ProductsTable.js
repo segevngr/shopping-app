@@ -8,19 +8,14 @@ const ProductTable = (props) => {
     const [page, setPage] = useState(1);
 
     const renderProducts = (data) => {
-        let products = data.map(function (productData) {
+        return data.map(function (productData) {
             return (
-                <Product data={productData}/>
+                <Product
+                    data={productData}
+                    addToCart={props.addToCart}
+                />
             )
         });
-
-        return (
-            <table id="products-table">
-                <tbody>
-                {products}
-                </tbody>
-            </table>
-        );
     }
 
     if (props.data && props.category) {
@@ -32,7 +27,21 @@ const ProductTable = (props) => {
         let pageData = filteredData.slice(pageStart, pageEnd)
         return (
             <div>
-                {renderProducts(pageData)}
+                <table id="products-table">
+                    <tbody>
+                    <tr>
+                        <td className="product-img"/>
+                        <td id="product-h">
+                            Item
+                        </td>
+                        <td id="product-h">
+                            Price
+                        </td>
+                        <td className="product-add-to-cart"/>
+                    </tr>
+                    {renderProducts(pageData)}
+                    </tbody>
+                </table>
                 <Pagination
                     data={filteredData}
                     page={page}

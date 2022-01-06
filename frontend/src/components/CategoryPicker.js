@@ -6,7 +6,7 @@ const CategoryPicker = (props) => {
     const renderCategories = (categories) => {
         if(categories) {
             let categoriesJSX = categories.map(function (category) {
-                return (<option value={category}>{category}</option>)
+                return (<option key={category} value={category}>{category}</option>)
             });
             return (
                 <select

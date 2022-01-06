@@ -5,11 +5,17 @@ html {
     text-align: center;
 }
 
-a {
+button {
+    background: none;
+    border: none;
     color: orangered;
+    font-size: 20px;
 }
 
-a:hover {
+button:hover {
+    background: none;
+    border: none;
+    font-size: 20px;
     color: orange;
     cursor: pointer;
 }
@@ -23,4 +29,10 @@ h2 {
     color: orangered;
     font-size: 30px;
     text-decoration: underline;
+}
+
+#no-items{
+    padding: 10px;
+    font-size: 22px;
+    font-weight: bold;
 }

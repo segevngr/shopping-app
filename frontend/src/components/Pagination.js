@@ -5,18 +5,18 @@ const Pagination = (props) => {
     const renderPages = (pagesArray) => {
         const pagesJSX = pagesArray.map(function (page) {
             if(props.page === page)
-                return (<b> {page} </b>)
+                return (<span> {page} </span>)
             else
-                return (<a onClick={() => props.setPage(page)}> {page} </a>)
+                return (<button onClick={() => props.setPage(page)}> {page} </button>)
         });
         let enablePrev = (props.page > 1);
         let enableNext = (props.page < pagesArray.length);
         return (
             <div id = "pagination">
-                {enablePrev? <a id="page-btn-on" onClick={() => props.setPage(props.page-1)}> Previous </a> :
+                {enablePrev? <button id="page-btn-on" onClick={() => props.setPage(props.page-1)}> Previous </button> :
                     <span id="page-btn"> Previous </span>}
                 {pagesJSX}
-                {enableNext? <a id="page-btn-on" onClick={() => props.setPage(props.page+1)}> Next </a> :
+                {enableNext? <button id="page-btn-on" onClick={() => props.setPage(props.page+1)}> Next </button> :
                     <span id="page-btn"> Next </span>}
             </div>
         );
