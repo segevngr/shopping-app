@@ -1,0 +1,96 @@
+#cart-table{
+    width:1000px;
+    margin: auto;
+    margin-top: 50px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#cart-img-header{
+    text-align: center;
+    padding: 10px;
+    width: 150px;
+}
+
+#cart-item-header{
+    font-weight: bold;
+    width: 400px;
+    padding: 10px;
+
+}
+
+#cart-remove-header{
+    width: 100px;
+    padding: 10px;
+
+}
+
+#cart-quant-header{
+    font-weight: bold;
+    width: 100px;
+    padding: 10px;
+    text-align: center;
+}
+
+#cart-price-header{
+    font-weight: bold;
+    width: 100px;
+    padding: 10px;
+    text-align: center;
+
+}
+
+
+#cart-img{
+    text-align: center;
+    padding: 10px;
+    width: 150px;
+}
+
+#cart-title{
+    width: 400px;
+    padding: 10px;
+
+}
+
+#cart-quant{
+    width: 80px;
+    padding: 10px;
+    text-align: center;
+}
+
+#cart-price{
+    width: 80px;
+    padding: 10px;
+    text-align: center;
+
+}
+
+#cart-btns{
+    margin: auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+#cart-btn{
+    width: 120px;
+    font-weight: bold;
+    margin: 10px;
+    padding: 10px;
+    background-color: orangered;
+    color: white;
+    border-radius: 5px;
+}
+
+#cart-btn:hover{
+    background-color: orange;
+    cursor: pointer;
+}
+
+#total-price{
+    font-size: 20px;
+    font-weight: bold;
+    padding: 20px;
+}
