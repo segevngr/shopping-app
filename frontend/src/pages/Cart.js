@@ -1,44 +1,47 @@
-import React, {useContext} from "react";
-import {CartContext} from "../cart-context";
+import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import CartTable from "../components/CartTable";
+import axios from "axios";
 
 const Cart = () => {
-    const cart = useContext(CartContext);
 
-    const removeFromCart = (item) => {
-        let newMap = cart.cartMap;
-        let itemToRemove = newMap.get(item.id);
-        if(itemToRemove.count > 1) {
-            itemToRemove.count--;
-            newMap.set(item.id, itemToRemove);
-        }
-        else{
-            newMap.delete(item.id)
-        }
-        cart.updateCartMap(newMap);
-        cart.updateCartCount(cart.cartCount - 1);
+    const [cartItems, setCartItems] = useState([]);
+
+    useEffect(() => {
+        axios.get(`http://localhost:5000/get-cart-items`).then(response => {
+            setCartItems(response.data);
+        });
+    }, []);
+
+    const removeFromCart = (product) => {
+        axios.post("http://localhost:5000/remove-from-cart", {
+            product: product,
+        }).then(response => {
+            setCartItems(response.data)
+        })
+
     }
 
-    const handleCheckOut = () => {
-        let totalPrice = calcTotal();
-        cart.updateCartMap(new Map());
-        cart.updateCartCount(0);
-        let dialogText = `Your purchase for ${totalPrice} $ was successful!\n`
-        window.alert(dialogText);
+    const handleCheckout = () => {
+        axios.post("http://localhost:5000/clear-cart").then(response => {
+            let totalPrice = calcTotal();
+            let dialogText = `Your purchase for ${totalPrice}$ was successful!\n`
+            window.alert(dialogText);
+            setCartItems([]);
+        })
     }
 
     const calcTotal = () => {
         let total = 0;
-        cart.cartMap.forEach((value) => {
-            total += value.price * value.count;
+        cartItems.forEach((product) => {
+            total += product[1].price * product[1].count;
         })
         return Math.floor(total);
     }
 
     const renderEmptyCart = () =>{
         return(
-            <div>
+            <div id="empty-cart">
                 <div id="no-items">There are no items in your cart!</div>
                 <Link to="/"><button>Click Here to start Shopping</button></Link>
             </div>
@@ -48,11 +51,11 @@ const Cart = () => {
     return(
         <div>
             <h2>Cart</h2>
-            {cart.cartCount === 0 ? renderEmptyCart() :
+            {cartItems.length === 0 ? renderEmptyCart() :
                 <CartTable
-                    cartItems={cart.cartMap}
+                    cartItems={cartItems}
                     removeFromCart={removeFromCart}
-                    handleCheckout={handleCheckOut}
+                    handleCheckout={handleCheckout}
                     calcTotal={calcTotal}
                 />
             }

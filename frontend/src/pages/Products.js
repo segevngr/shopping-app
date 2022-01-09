@@ -1,17 +1,16 @@
-import React, {useEffect, useState, useContext} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import axios from "axios";
 import ProductTable from "../components/ProductsTable";
 import CategoryPicker from "../components/CategoryPicker";
 import './Products.css';
-import {CartContext} from "../cart-context";
 
 const Products = () => {
-    const cart = useContext(CartContext);
 
     const [productsJson, setProductsJson] = useState(null);
     const [productsCategories, setProductsCategories] = useState([]);
     const [category, setCategory] = useState("All Categories");
+    const [cartCount, setCartCount] = useState(0);
 
     useEffect(() => {
         axios.get(`http://localhost:5000/get-products`).then(response => {
@@ -20,20 +19,17 @@ const Products = () => {
         axios.get(`http://localhost:5000/get-categories`).then(response => {
             setProductsCategories(response.data);
         });
+        axios.get(`http://localhost:5000/get-cart-count`).then(response => {
+            setCartCount(response.data);
+        });
     }, []);
 
     const addToCart = (product) => {
-        let newMap = cart.cartMap;
-        if (newMap.has(product.id)) {
-            let newProd = newMap.get(product.id);
-            newProd.count++;
-            newMap.set(product.id, newProd);
-        } else {
-            product.count = 1;
-            newMap.set(product.id, product);
-        }
-        cart.updateCartMap(newMap);
-        cart.updateCartCount(cart.cartCount + 1);
+        axios.post("http://localhost:5000/add-to-cart", {
+            product: product,
+        }).then(response => {
+            setCartCount(cartCount+1);
+        })
     }
 
     return (
@@ -49,7 +45,7 @@ const Products = () => {
                         />
                     </td>
                     <td id="cart-link">
-                        {cart.cartCount>0 ? <span id="cart-count"> {cart.cartCount}</span> : null}
+                        {cartCount > 0 ? <span id="cart-count">{cartCount}</span> : null}
                         <Link to="/cart">
                             <img id="cart-icon" alt = "" src = "https://www.pinclipart.com/picdir/big/403-4035278_png-file-svg-shopping-cart-icon-png-clipart.png"/>
                         </Link>

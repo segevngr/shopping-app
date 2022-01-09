@@ -7,10 +7,9 @@ import {Link} from "react-router-dom";
 const CartTable = (props) => {
 
     const renderCartItems = () => {
-        return Array.from(props.cartItems.keys()).map((key) => {
-            let value = props.cartItems.get(key);
+        return props.cartItems.map((product) => {
             return (<CartItem
-                data={value}
+                data={product[1]}
                 removeFromCart={props.removeFromCart}
             />)
         });
@@ -39,7 +38,7 @@ const CartTable = (props) => {
                     </tbody>
                 </table>
                 <div id="total-price">
-                    Total: {props.calcTotal()} $
+                    Total: {props.calcTotal()}$
                 </div>
                 <div id="cart-btns">
                     <Link to="/">
