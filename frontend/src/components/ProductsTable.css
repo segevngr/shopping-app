@@ -34,8 +34,16 @@ img {
     text-align: center;
 }
 
-#product-h{
+#sort-enabled{
     font-weight: bold;
     padding-top: 10px;
     font-size: 20px;
+    text-decoration: underline;
+}
+
+#sort-disabled{
+    font-weight: bold;
+    padding-top: 10px;
+    font-size: 20px;
+    text-decoration: none;
 }

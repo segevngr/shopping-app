@@ -32,10 +32,12 @@ const ProductTable = (props) => {
                     <tr>
                         <td className="product-img"/>
                         <td id="product-h">
-                            Item
+                            <button id={props.sort==="name"? "sort-enabled" : "sort-disabled"}
+                                    onClick={props.sortByName}> Item </button>
                         </td>
                         <td id="product-h">
-                            Price
+                            <button id={props.sort==="price"? "sort-enabled" : "sort-disabled"}
+                                    onClick={props.sortByPrice}> Price </button>
                         </td>
                         <td className="product-add-to-cart"/>
                     </tr>

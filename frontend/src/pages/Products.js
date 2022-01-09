@@ -11,6 +11,7 @@ const Products = () => {
     const [productsCategories, setProductsCategories] = useState([]);
     const [category, setCategory] = useState("All Categories");
     const [cartCount, setCartCount] = useState(0);
+    const [sort, setSort] = useState("");
 
     useEffect(() => {
         axios.get(`http://localhost:5000/get-products`).then(response => {
@@ -28,8 +29,36 @@ const Products = () => {
         axios.post("http://localhost:5000/add-to-cart", {
             product: product,
         }).then(response => {
-            setCartCount(cartCount+1);
+            setCartCount(cartCount + 1);
         })
+    }
+
+    const sortByName = () => {
+        let products = productsJson.slice();
+        function compare(a, b) {
+            if (a.title < b.title)
+                return -1;
+            if (a.title > b.title)
+                return 1;
+            return 0;
+        }
+        products.sort(compare);
+        setProductsJson(products);
+        setSort("name");
+    }
+
+    const sortByPrice = () => {
+        let products = productsJson.slice();
+        function compare(a, b) {
+            if (a.price < b.price)
+                return -1;
+            if (a.price > b.price)
+                return 1;
+            return 0;
+        }
+        products.sort(compare);
+        setProductsJson(products);
+        setSort("price");
     }
 
     return (
@@ -47,7 +76,8 @@ const Products = () => {
                     <td id="cart-link">
                         {cartCount > 0 ? <span id="cart-count">{cartCount}</span> : null}
                         <Link to="/cart">
-                            <img id="cart-icon" alt = "" src = "https://www.pinclipart.com/picdir/big/403-4035278_png-file-svg-shopping-cart-icon-png-clipart.png"/>
+                            <img id="cart-icon" alt=""
+                                 src="https://www.pinclipart.com/picdir/big/403-4035278_png-file-svg-shopping-cart-icon-png-clipart.png"/>
                         </Link>
                     </td>
                 </tr>
@@ -57,6 +87,9 @@ const Products = () => {
                 data={productsJson}
                 category={category}
                 addToCart={addToCart}
+                sortByName={sortByName}
+                sortByPrice={sortByPrice}
+                sort={sort}
             />
         </div>
     )
